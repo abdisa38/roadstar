@@ -68,14 +68,19 @@ export default function StaffPermissions({
   const permissions = new Set(revoked ? [] : role.grants)
   const items = allowedDestinations(permissions)
   const destination = destinations.find((item) => item.id === active)
+  const isProfile = active.startsWith("profile")
   const denied =
-    (active !== "home" && !permissions.has(active)) || (reception && revoked)
+    (active !== "home" &&
+      (isProfile ? !permissions.has("directory") : !permissions.has(active))) ||
+    (reception && revoked)
   const searchResults = items.filter((item) =>
     `${item.label} ${item.action}`.toLowerCase().includes(query.toLowerCase()),
   )
   useEffect(() => {
     document.title =
-      active === "registration"
+      active.startsWith("profile")
+        ? "Patient Profile | ORHIMS Design Preview"
+        : active === "registration"
         ? "Register Patient | ORHIMS Design Preview"
         : active === "directory"
           ? "Patient Directory | ORHIMS Design Preview"
