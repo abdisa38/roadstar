@@ -25,7 +25,6 @@ import PatientRegistrationPage, {
   type RegistrationLeaveGuard,
 } from "./registration/PatientRegistrationPage"
 import PatientDirectoryPage from "./patient-directory/PatientDirectoryPage"
-import PatientProfilePage from "./patient-profile/PatientProfilePage"
 
 type ViewState = "ready" | "loading" | "empty" | "error" | "restricted" | "no-appointments" | "no-matches" | "expired"
 type Panel = "search" | "notifications" | "profile" | "help" | "navigation" | "action" | null
@@ -68,19 +67,14 @@ export default function StaffPermissions({
   const permissions = new Set(revoked ? [] : role.grants)
   const items = allowedDestinations(permissions)
   const destination = destinations.find((item) => item.id === active)
-  const isProfile = active.startsWith("profile")
   const denied =
-    (active !== "home" &&
-      (isProfile ? !permissions.has("directory") : !permissions.has(active))) ||
-    (reception && revoked)
+    (active !== "home" && !permissions.has(active)) || (reception && revoked)
   const searchResults = items.filter((item) =>
     `${item.label} ${item.action}`.toLowerCase().includes(query.toLowerCase()),
   )
   useEffect(() => {
     document.title =
-      active.startsWith("profile")
-        ? "Patient Profile | ORHIMS Design Preview"
-        : active === "registration"
+      active === "registration"
         ? "Register Patient | ORHIMS Design Preview"
         : active === "directory"
           ? "Patient Directory | ORHIMS Design Preview"
@@ -129,7 +123,7 @@ export default function StaffPermissions({
     setPanel(null)
     setReview(false)
     requestAnimationFrame(() => {
-      if (id === "registration" || id === "directory" || id.startsWith("profile")) {
+      if (id === "registration" || id === "directory") {
         window.scrollTo({ top: 0 })
         document
           .getElementById("permission-main")
@@ -418,14 +412,6 @@ export default function StaffPermissions({
                 setView("ready")
                 navigate("home")
               }}
-            />
-          ) : active.startsWith("profile") ? (
-            <PatientProfilePage
-              patientId={active.includes("/") ? active.split("/")[1] : "DEMO-EX-101"}
-              state={view}
-              permissions={permissions}
-              onNavigate={navigate}
-              onReady={() => setView("ready")}
             />
           ) : active === "directory" ? (
             <PatientDirectoryPage

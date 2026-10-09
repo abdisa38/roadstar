@@ -334,30 +334,17 @@ export default function PatientDirectoryPage({
           <div className="patient-preview-scope">
             <Icon name="info" size={18} />
             <Text>
-              Selecting Open Patient Profile transitions to the complete Prompt 20
-              unified record workspace with dedicated encounter, appointment, and
-              clinical sections.
+              This is the intended patient-workspace entry concept, not the
+              complete Prompt 20 profile. No appointment, encounter, clinical
+              record, or payment is created or displayed.
             </Text>
           </div>
-          <div style={{ display: "flex", justifyContent: "flex-end", gap: "0.75rem", marginTop: "1rem" }}>
-            <Button
-              className="button secondary"
-              onClick={() => setSelected(null)}
-            >
-              Return to Directory
-            </Button>
-            <Button
-              className="button"
-              onClick={() => {
-                const id = selected.id
-                setSelected(null)
-                onNavigate(`profile/${id}`)
-              }}
-            >
-              <Icon name="user" size={15} />
-              Open Patient Profile
-            </Button>
-          </div>
+          <Button
+            className="button secondary"
+            onClick={() => setSelected(null)}
+          >
+            Return to Directory
+          </Button>
         </PreviewDialog>
       )}
     </div>
