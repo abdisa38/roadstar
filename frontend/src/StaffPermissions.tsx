@@ -129,7 +129,7 @@ export default function StaffPermissions({
     setPanel(null)
     setReview(false)
     requestAnimationFrame(() => {
-      if (id === "registration" || id === "directory") {
+      if (id === "registration" || id === "directory" || id.startsWith("profile")) {
         window.scrollTo({ top: 0 })
         document
           .getElementById("permission-main")
@@ -418,6 +418,14 @@ export default function StaffPermissions({
                 setView("ready")
                 navigate("home")
               }}
+            />
+          ) : active.startsWith("profile") ? (
+            <PatientProfilePage
+              patientId={active.includes("/") ? active.split("/")[1] : "DEMO-EX-101"}
+              state={view}
+              permissions={permissions}
+              onNavigate={navigate}
+              onReady={() => setView("ready")}
             />
           ) : active === "directory" ? (
             <PatientDirectoryPage
