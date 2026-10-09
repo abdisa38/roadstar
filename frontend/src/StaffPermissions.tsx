@@ -25,6 +25,7 @@ import PatientRegistrationPage, {
   type RegistrationLeaveGuard,
 } from "./registration/PatientRegistrationPage"
 import PatientDirectoryPage from "./patient-directory/PatientDirectoryPage"
+import PatientProfilePage from "./patient-profile/PatientProfilePage"
 
 type ViewState = "ready" | "loading" | "empty" | "error" | "restricted" | "no-appointments" | "no-matches" | "expired"
 type Panel = "search" | "notifications" | "profile" | "help" | "navigation" | "action" | null
