@@ -18,9 +18,11 @@ const QueueManagement = lazy(() => import("./queue/QueueManagementPage"))
 const NurseDashboard = lazy(() => import("./nurse/NurseDashboardPage"))
 const TriageAssessment = lazy(() => import("./triage/TriageAssessmentPage"))
 const DoctorDashboard = lazy(() => import("./doctor/DoctorDashboardPage"))
+const ClinicalWorkspace = lazy(() => import("./clinical/ClinicalWorkspacePage"))
 
-type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor"
+type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical"
 function pageFromPath(path: string): PublicPage {
+  if (path === "/staff/clinical" || path.startsWith("/staff/clinical/")) return "staff-clinical"
   if (path === "/staff/doctor" || path.startsWith("/staff/doctor/")) return "staff-doctor"
   if (path === "/staff/triage" || path.startsWith("/staff/triage/")) return "staff-triage"
   if (path === "/staff/nurse" || path.startsWith("/staff/nurse/")) return "staff-nurse"
@@ -233,6 +235,8 @@ export default function App() {
   }
   if (page === "staff-permissions")
     return <Suspense fallback={<div className="notice">Loading design-review workspace…</div>}><StaffPermissions key="permissions" /></Suspense>
+  if (page === "staff-clinical")
+    return <Suspense fallback={<div className="notice">Loading clinical workspace…</div>}><ClinicalWorkspace state="ready" patientId="ORH-2026-00124" encounterId="ENC-2026-00087" onNavigate={(id, params) => console.log('Navigate to:', id, params)} onReady={() => {}} /></Suspense>
   if (page === "staff-doctor")
     return <Suspense fallback={<div className="notice">Loading doctor dashboard…</div>}><DoctorDashboard state="ready" doctorName="Dr. Demo" onNavigate={(id, params) => console.log('Navigate to:', id, params)} onReady={() => {}} /></Suspense>
   if (page === "staff-triage")
