@@ -14,9 +14,13 @@ const StaffAuthentication = lazy(() => import("./StaffAuthentication"))
 const StaffPermissions = lazy(() => import("./StaffPermissions"))
 const AppointmentManagement = lazy(() => import("./appointments/AppointmentManagementPage"))
 const PatientProfile = lazy(() => import("./patient-profile/PatientProfilePage"))
+const QueueManagement = lazy(() => import("./queue/QueueManagementPage"))
+const NurseDashboard = lazy(() => import("./nurse/NurseDashboardPage"))
 
-type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile"
+type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse"
 function pageFromPath(path: string): PublicPage {
+  if (path === "/staff/nurse" || path.startsWith("/staff/nurse/")) return "staff-nurse"
+  if (path === "/staff/queue" || path.startsWith("/staff/queue/")) return "staff-queue"
   if (path === "/staff/patient-profile" || path.startsWith("/staff/patient-profile/")) return "staff-patient-profile"
   if (path === "/staff/appointments" || path.startsWith("/staff/appointments/")) return "staff-appointments"
   if (path === "/staff/reception" || path.startsWith("/staff/reception/")) return "staff-reception"
@@ -225,10 +229,14 @@ export default function App() {
   }
   if (page === "staff-permissions")
     return <Suspense fallback={<div className="notice">Loading design-review workspace…</div>}><StaffPermissions key="permissions" /></Suspense>
+  if (page === "staff-nurse")
+    return <Suspense fallback={<div className="notice">Loading nurse dashboard…</div>}><NurseDashboard state="ready" permissions={new Set(["triage", "vital-signs", "nursing-notes", "patient-records", "queue"])} onNavigate={(id) => console.log('Navigate to:', id)} onReady={() => {}} /></Suspense>
   if (page === "staff-patient-profile")
     return <Suspense fallback={<div className="notice">Loading patient profile…</div>}><PatientProfile state="ready" patientId="DEMO-EX-101" permissions={new Set(["directory", "appointments", "encounters", "clinical-records", "laboratory", "prescriptions", "billing", "registration", "queue"])} onNavigate={(id) => console.log('Navigate to:', id)} onReady={() => {}} /></Suspense>
   if (page === "staff-appointments")
     return <Suspense fallback={<div className="notice">Loading appointment management…</div>}><AppointmentManagement state="ready" permissions={new Set(["appointments", "queue", "directory"])} onNavigate={(id) => console.log('Navigate to:', id)} onReady={() => {}} /></Suspense>
+  if (page === "staff-queue")
+    return <Suspense fallback={<div className="notice">Loading queue management…</div>}><QueueManagement state="ready" permissions={new Set(["queue", "appointments", "directory", "encounters"])} onNavigate={(id) => console.log('Navigate to:', id)} onReady={() => {}} /></Suspense>
   if (page === "staff-reception")
     return <Suspense fallback={<div className="notice">Loading reception preview…</div>}><StaffPermissions key="reception" reception /></Suspense>
   if (page === "staff-auth")
