@@ -17,9 +17,11 @@ const PatientProfile = lazy(() => import("./patient-profile/PatientProfilePage")
 const QueueManagement = lazy(() => import("./queue/QueueManagementPage"))
 const NurseDashboard = lazy(() => import("./nurse/NurseDashboardPage"))
 const TriageAssessment = lazy(() => import("./triage/TriageAssessmentPage"))
+const DoctorDashboard = lazy(() => import("./doctor/DoctorDashboardPage"))
 
-type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage"
+type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor"
 function pageFromPath(path: string): PublicPage {
+  if (path === "/staff/doctor" || path.startsWith("/staff/doctor/")) return "staff-doctor"
   if (path === "/staff/triage" || path.startsWith("/staff/triage/")) return "staff-triage"
   if (path === "/staff/nurse" || path.startsWith("/staff/nurse/")) return "staff-nurse"
   if (path === "/staff/queue" || path.startsWith("/staff/queue/")) return "staff-queue"
@@ -231,6 +233,8 @@ export default function App() {
   }
   if (page === "staff-permissions")
     return <Suspense fallback={<div className="notice">Loading design-review workspace…</div>}><StaffPermissions key="permissions" /></Suspense>
+  if (page === "staff-doctor")
+    return <Suspense fallback={<div className="notice">Loading doctor dashboard…</div>}><DoctorDashboard state="ready" doctorName="Dr. Demo" onNavigate={(id, params) => console.log('Navigate to:', id, params)} onReady={() => {}} /></Suspense>
   if (page === "staff-triage")
     return <Suspense fallback={<div className="notice">Loading triage assessment…</div>}><TriageAssessment state="ready" patientId="ORH-2026-00124" encounterId="ENC-2026-00087" onNavigate={(id) => console.log('Navigate to:', id)} onReady={() => {}} /></Suspense>
   if (page === "staff-nurse")
