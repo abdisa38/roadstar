@@ -16,9 +16,11 @@ const AppointmentManagement = lazy(() => import("./appointments/AppointmentManag
 const PatientProfile = lazy(() => import("./patient-profile/PatientProfilePage"))
 const QueueManagement = lazy(() => import("./queue/QueueManagementPage"))
 const NurseDashboard = lazy(() => import("./nurse/NurseDashboardPage"))
+const TriageAssessment = lazy(() => import("./triage/TriageAssessmentPage"))
 
-type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse"
+type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage"
 function pageFromPath(path: string): PublicPage {
+  if (path === "/staff/triage" || path.startsWith("/staff/triage/")) return "staff-triage"
   if (path === "/staff/nurse" || path.startsWith("/staff/nurse/")) return "staff-nurse"
   if (path === "/staff/queue" || path.startsWith("/staff/queue/")) return "staff-queue"
   if (path === "/staff/patient-profile" || path.startsWith("/staff/patient-profile/")) return "staff-patient-profile"
@@ -229,6 +231,8 @@ export default function App() {
   }
   if (page === "staff-permissions")
     return <Suspense fallback={<div className="notice">Loading design-review workspace…</div>}><StaffPermissions key="permissions" /></Suspense>
+  if (page === "staff-triage")
+    return <Suspense fallback={<div className="notice">Loading triage assessment…</div>}><TriageAssessment state="ready" patientId="ORH-2026-00124" encounterId="ENC-2026-00087" onNavigate={(id) => console.log('Navigate to:', id)} onReady={() => {}} /></Suspense>
   if (page === "staff-nurse")
     return <Suspense fallback={<div className="notice">Loading nurse dashboard…</div>}><NurseDashboard state="ready" permissions={new Set(["triage", "vital-signs", "nursing-notes", "patient-records", "queue"])} onNavigate={(id) => console.log('Navigate to:', id)} onReady={() => {}} /></Suspense>
   if (page === "staff-patient-profile")
