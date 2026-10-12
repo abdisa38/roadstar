@@ -7,6 +7,7 @@ import './about.css'
 import './directory.css'
 import './staff.css'
 import './booking.css'
+import './prescription/prescription.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

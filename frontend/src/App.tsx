@@ -21,9 +21,11 @@ const DoctorDashboard = lazy(() => import("./doctor/DoctorDashboardPage"))
 const ClinicalWorkspace = lazy(() => import("./clinical/ClinicalWorkspacePage"))
 const MedicalHistory = lazy(() => import("./medical-history/MedicalHistoryPage"))
 const DiagnosisManagement = lazy(() => import("./diagnosis/DiagnosisManagementPage"))
+const PrescriptionManagement = lazy(() => import("./prescription/PrescriptionManagementPage"))
 
-type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis"
+type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis" | "staff-prescription"
 function pageFromPath(path: string): PublicPage {
+  if (path === "/staff/prescription" || path.startsWith("/staff/prescription/")) return "staff-prescription"
   if (path === "/staff/diagnosis" || path.startsWith("/staff/diagnosis/")) return "staff-diagnosis"
   if (path === "/staff/medical-history" || path.startsWith("/staff/medical-history/")) return "staff-medical-history"
   if (path === "/staff/clinical" || path.startsWith("/staff/clinical/")) return "staff-clinical"
@@ -239,6 +241,8 @@ export default function App() {
   }
   if (page === "staff-permissions")
     return <Suspense fallback={<div className="notice">Loading design-review workspace…</div>}><StaffPermissions key="permissions" /></Suspense>
+  if (page === "staff-prescription")
+    return <Suspense fallback={<div className="notice">Loading prescription management…</div>}><PrescriptionManagement state="ready" patientId="ORH-2026-00124" encounterId="ENC-2026-00087" onNavigate={(id, params) => console.log('Navigate to:', id, params)} onReady={() => {}} /></Suspense>
   if (page === "staff-diagnosis")
     return <Suspense fallback={<div className="notice">Loading diagnosis management…</div>}><DiagnosisManagement state="ready" patientId="ORH-2026-00124" encounterId="ENC-2026-00087" onNavigate={(id, params) => console.log('Navigate to:', id, params)} onReady={() => {}} /></Suspense>
   if (page === "staff-medical-history")
