@@ -22,9 +22,13 @@ const ClinicalWorkspace = lazy(() => import("./clinical/ClinicalWorkspacePage"))
 const MedicalHistory = lazy(() => import("./medical-history/MedicalHistoryPage"))
 const DiagnosisManagement = lazy(() => import("./diagnosis/DiagnosisManagementPage"))
 const PrescriptionManagement = lazy(() => import("./prescription/PrescriptionManagementPage"))
+const LaboratoryOrders = lazy(() => import("./laboratory/LaboratoryOrdersPage"))
+const SpecimenCollection = lazy(() => import("./laboratory/SpecimenCollectionPage"))
 
-type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis" | "staff-prescription"
+type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis" | "staff-prescription" | "staff-laboratory" | "staff-specimen-collection"
 function pageFromPath(path: string): PublicPage {
+  if (path === "/staff/laboratory/specimen-collection" || path.startsWith("/staff/laboratory/specimen-collection/")) return "staff-specimen-collection"
+  if (path === "/staff/laboratory" || path.startsWith("/staff/laboratory/")) return "staff-laboratory"
   if (path === "/staff/prescription" || path.startsWith("/staff/prescription/")) return "staff-prescription"
   if (path === "/staff/diagnosis" || path.startsWith("/staff/diagnosis/")) return "staff-diagnosis"
   if (path === "/staff/medical-history" || path.startsWith("/staff/medical-history/")) return "staff-medical-history"
@@ -241,6 +245,10 @@ export default function App() {
   }
   if (page === "staff-permissions")
     return <Suspense fallback={<div className="notice">Loading design-review workspace…</div>}><StaffPermissions key="permissions" /></Suspense>
+  if (page === "staff-specimen-collection")
+    return <Suspense fallback={<div className="notice">Loading specimen collection…</div>}><SpecimenCollection onNavigateBack={() => { window.history.pushState({}, "", "/staff/laboratory"); setPage("staff-laboratory"); }} /></Suspense>
+  if (page === "staff-laboratory")
+    return <Suspense fallback={<div className="notice">Loading laboratory orders…</div>}><LaboratoryOrders state="ready" patientId="ORH-2026-00124" encounterId="ENC-2026-00087" onNavigate={(id, params) => { if (id === "specimen-collection") { window.history.pushState({}, "", "/staff/laboratory/specimen-collection"); setPage("staff-specimen-collection"); } else { console.log('Navigate to:', id, params); } }} onReady={() => {}} /></Suspense>
   if (page === "staff-prescription")
     return <Suspense fallback={<div className="notice">Loading prescription management…</div>}><PrescriptionManagement state="ready" patientId="ORH-2026-00124" encounterId="ENC-2026-00087" onNavigate={(id, params) => console.log('Navigate to:', id, params)} onReady={() => {}} /></Suspense>
   if (page === "staff-diagnosis")
