@@ -1,0 +1,1924 @@
+/* ============================================
+   LABORATORY ORDERS & SPECIMEN COLLECTION
+   CSS for Prompt 30 & Prompt 32
+   ============================================ */
+
+/* ============================================
+   LABORATORY ORDERS (Prompt 30)
+   ============================================ */
+
+/* Page container */
+.laboratory-orders-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.laboratory-orders-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Header */
+.laboratory-orders-header {
+  background-color: #ffffff;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 1.5rem 2rem;
+  margin: -2rem -2rem 2rem -2rem;
+}
+
+.laboratory-header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.laboratory-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #4a5568;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.laboratory-back-button:hover {
+  background-color: #f7fafc;
+  color: #2d3748;
+  border-color: #a0aec0;
+}
+
+.icon-back {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.laboratory-orders-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 0.25rem 0;
+}
+
+.laboratory-orders-subtitle {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0;
+}
+
+/* Patient encounter header */
+.laboratory-patient-header {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.laboratory-patient-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.laboratory-patient-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.laboratory-patient-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.laboratory-patient-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Main layout */
+.laboratory-orders-main {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 1200px) {
+  .laboratory-orders-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Requests section */
+.laboratory-requests-section {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.laboratory-requests-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.laboratory-requests-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.laboratory-request-count {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+/* Filters */
+.laboratory-filters {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f7fafc;
+}
+
+.laboratory-filters-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.laboratory-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.laboratory-filter-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.laboratory-filter-input,
+.laboratory-filter-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: #2d3748;
+  background-color: #ffffff;
+  transition: border-color 0.2s;
+}
+
+.laboratory-filter-input:focus,
+.laboratory-filter-select:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.laboratory-clear-filters {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #4299e1;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: end;
+}
+
+.laboratory-clear-filters:hover {
+  background-color: #ebf8ff;
+  color: #2c5282;
+}
+
+/* Request list */
+.laboratory-requests-list {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Request card */
+.laboratory-request-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.laboratory-request-card:hover {
+  border-color: #cbd5e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.laboratory-request-card.laboratory-request-selected {
+  border-color: #4299e1;
+  background-color: #ebf8ff;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.laboratory-request-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 0.75rem;
+}
+
+.laboratory-request-id {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.laboratory-request-date {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.laboratory-request-tests {
+  margin-bottom: 0.75rem;
+}
+
+.laboratory-test-count {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-bottom: 0.5rem;
+}
+
+.laboratory-test-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.laboratory-test-tag {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  background-color: #e2e8f0;
+  color: #4a5568;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.laboratory-test-more {
+  font-size: 0.75rem;
+  color: #718096;
+  font-style: italic;
+}
+
+.laboratory-request-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Status badge */
+.laboratory-status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.laboratory-status-draft {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+
+.laboratory-status-requested {
+  background-color: #bee3f8;
+  color: #2c5282;
+}
+
+.laboratory-status-accepted {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.laboratory-status-specimen-collection-pending {
+  background-color: #feebc8;
+  color: #7c2d12;
+}
+
+.laboratory-status-specimen-collected {
+  background-color: #d6bcfa;
+  color: #44337a;
+}
+
+.laboratory-status-in-progress {
+  background-color: #b794f4;
+  color: #322659;
+}
+
+.laboratory-status-result-available {
+  background-color: #9ae6b4;
+  color: #22543d;
+}
+
+.laboratory-status-cancelled {
+  background-color: #feb2b2;
+  color: #742a2a;
+}
+
+/* Priority badge */
+.laboratory-priority-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.laboratory-priority-STAT {
+  background-color: #fed7d7;
+  color: #742a2a;
+}
+
+.laboratory-priority-urgent {
+  background-color: #feebc8;
+  color: #7c2d12;
+}
+
+.laboratory-priority-routine {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+
+/* Empty state */
+.laboratory-empty-state {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.laboratory-empty-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  color: #cbd5e0;
+}
+
+.laboratory-empty-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 0 0 0.5rem 0;
+}
+
+.laboratory-empty-description {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0;
+}
+
+/* New request panel */
+.laboratory-new-request-panel {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.laboratory-panel-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f7fafc;
+}
+
+.laboratory-panel-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 0.25rem 0;
+}
+
+.laboratory-panel-subtitle {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0;
+}
+
+.laboratory-panel-content {
+  padding: 1.5rem;
+}
+
+/* Test catalogue search */
+.laboratory-catalogue-search {
+  margin-bottom: 1.5rem;
+}
+
+.laboratory-search-field {
+  position: relative;
+}
+
+.laboratory-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #a0aec0;
+  pointer-events: none;
+}
+
+.laboratory-search-input {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: #2d3748;
+  transition: border-color 0.2s;
+}
+
+.laboratory-search-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.laboratory-search-hint {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+/* Test catalogue results */
+.laboratory-catalogue-results {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+}
+
+.laboratory-category-group {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.laboratory-category-group:last-child {
+  border-bottom: none;
+}
+
+.laboratory-category-header {
+  padding: 0.75rem 1rem;
+  background-color: #f7fafc;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.laboratory-category-tests {
+  display: flex;
+  flex-direction: column;
+}
+
+.laboratory-test-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s;
+}
+
+.laboratory-test-item:last-child {
+  border-bottom: none;
+}
+
+.laboratory-test-item:hover {
+  background-color: #f7fafc;
+}
+
+.laboratory-test-checkbox {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.75rem;
+  cursor: pointer;
+}
+
+.laboratory-test-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.laboratory-test-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.laboratory-test-code-specimen {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+/* Selected tests section */
+.laboratory-selected-tests {
+  margin-bottom: 1.5rem;
+}
+
+.laboratory-section-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.laboratory-selected-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  min-height: 3rem;
+}
+
+.laboratory-selected-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background-color: #4299e1;
+  color: #ffffff;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.laboratory-remove-test {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  transition: opacity 0.2s;
+}
+
+.laboratory-remove-test:hover {
+  opacity: 0.8;
+}
+
+.laboratory-remove-test svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.laboratory-selected-empty {
+  font-size: 0.875rem;
+  color: #a0aec0;
+  font-style: italic;
+}
+
+/* Form fields */
+.laboratory-form-field {
+  margin-bottom: 1.5rem;
+}
+
+.laboratory-field-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.laboratory-required-mark {
+  color: #e53e3e;
+  margin-left: 0.25rem;
+}
+
+.laboratory-text-input,
+.laboratory-textarea-input,
+.laboratory-select-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: #2d3748;
+  transition: border-color 0.2s;
+}
+
+.laboratory-text-input:focus,
+.laboratory-textarea-input:focus,
+.laboratory-select-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.laboratory-textarea-input {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.laboratory-field-hint {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+/* Duplicate warning */
+.laboratory-duplicate-warning {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: #fffaf0;
+  border: 1px solid #f6ad55;
+  border-radius: 0.375rem;
+  margin-bottom: 1.5rem;
+}
+
+.laboratory-warning-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #dd6b20;
+}
+
+.laboratory-warning-content {
+  flex: 1;
+}
+
+.laboratory-warning-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #7c2d12;
+  margin: 0 0 0.25rem 0;
+}
+
+.laboratory-warning-message {
+  font-size: 0.875rem;
+  color: #7c2d12;
+  margin: 0;
+}
+
+.laboratory-warning-list {
+  margin: 0.5rem 0 0 1.25rem;
+  padding: 0;
+  list-style: disc;
+  font-size: 0.875rem;
+  color: #7c2d12;
+}
+
+/* Panel actions */
+.laboratory-panel-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  background-color: #f7fafc;
+}
+
+.laboratory-button-primary,
+.laboratory-button-secondary,
+.laboratory-button-danger {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.laboratory-button-primary {
+  background-color: #4299e1;
+  color: #ffffff;
+}
+
+.laboratory-button-primary:hover:not(:disabled) {
+  background-color: #3182ce;
+}
+
+.laboratory-button-primary:disabled {
+  background-color: #cbd5e0;
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.laboratory-button-secondary {
+  background-color: #ffffff;
+  color: #4a5568;
+  border: 1px solid #cbd5e0;
+}
+
+.laboratory-button-secondary:hover {
+  background-color: #f7fafc;
+  border-color: #a0aec0;
+}
+
+.laboratory-button-danger {
+  background-color: #fc8181;
+  color: #ffffff;
+}
+
+.laboratory-button-danger:hover {
+  background-color: #f56565;
+}
+
+/* Dialogs */
+.laboratory-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 1000;
+}
+
+.laboratory-dialog {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.laboratory-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.laboratory-dialog-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.laboratory-dialog-close {
+  padding: 0.5rem;
+  background-color: transparent;
+  color: #a0aec0;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.laboratory-dialog-close:hover {
+  background-color: #f7fafc;
+  color: #4a5568;
+}
+
+.laboratory-dialog-close svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.laboratory-dialog-content {
+  padding: 1.5rem;
+}
+
+.laboratory-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  background-color: #f7fafc;
+}
+
+/* Request review dialog */
+.laboratory-review-section {
+  margin-bottom: 1.5rem;
+}
+
+.laboratory-review-section:last-child {
+  margin-bottom: 0;
+}
+
+.laboratory-review-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 1rem 0;
+}
+
+.laboratory-review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.laboratory-review-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.laboratory-review-field-full {
+  grid-column: 1 / -1;
+}
+
+.laboratory-review-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.laboratory-review-value {
+  font-size: 0.875rem;
+  color: #2d3748;
+}
+
+.laboratory-review-tests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Request details dialog */
+.laboratory-details-tabs {
+  display: flex;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+}
+
+.laboratory-details-tab {
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: #718096;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.laboratory-details-tab:hover {
+  color: #4a5568;
+}
+
+.laboratory-details-tab.laboratory-tab-active {
+  color: #4299e1;
+  border-bottom-color: #4299e1;
+}
+
+.laboratory-status-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.laboratory-action-button {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.laboratory-action-view-result {
+  background-color: #48bb78;
+  color: #ffffff;
+}
+
+.laboratory-action-view-result:hover {
+  background-color: #38a169;
+}
+
+.laboratory-action-cancel {
+  background-color: #fc8181;
+  color: #ffffff;
+}
+
+.laboratory-action-cancel:hover {
+  background-color: #f56565;
+}
+
+/* Success notice */
+.laboratory-success-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background-color: #f0fff4;
+  border: 1px solid #9ae6b4;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.laboratory-success-icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #38a169;
+}
+
+.laboratory-success-text {
+  flex: 1;
+  font-size: 0.875rem;
+  color: #22543d;
+  font-weight: 500;
+}
+
+.laboratory-success-dismiss {
+  padding: 0.25rem;
+  background-color: transparent;
+  color: #48bb78;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.laboratory-success-dismiss:hover {
+  background-color: #c6f6d5;
+}
+
+.laboratory-success-dismiss svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ============================================
+   SPECIMEN COLLECTION (Prompt 32)
+   ============================================ */
+
+/* Page container */
+.specimen-collection-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.specimen-collection-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Header */
+.specimen-collection-header {
+  background-color: #ffffff;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 1.5rem 2rem;
+  margin: -2rem -2rem 2rem -2rem;
+}
+
+.specimen-collection-header-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.specimen-collection-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #4a5568;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.specimen-collection-back-button:hover {
+  background-color: #f7fafc;
+  color: #2d3748;
+  border-color: #a0aec0;
+}
+
+.specimen-collection-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 0.25rem 0;
+}
+
+.specimen-collection-subtitle {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0;
+}
+
+/* Notices */
+.specimen-collection-notices {
+  margin-bottom: 2rem;
+}
+
+.specimen-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.specimen-notice:last-child {
+  margin-bottom: 0;
+}
+
+.specimen-notice-success {
+  background-color: #f0fff4;
+  border: 1px solid #9ae6b4;
+}
+
+.specimen-notice-warning {
+  background-color: #fffaf0;
+  border: 1px solid #f6ad55;
+}
+
+.specimen-notice-icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.specimen-notice-success .specimen-notice-icon {
+  color: #38a169;
+}
+
+.specimen-notice-warning .specimen-notice-icon {
+  color: #dd6b20;
+}
+
+.specimen-notice-text {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.specimen-notice-success .specimen-notice-text {
+  color: #22543d;
+}
+
+.specimen-notice-warning .specimen-notice-text {
+  color: #7c2d12;
+}
+
+.specimen-notice-dismiss {
+  padding: 0.25rem;
+  background-color: transparent;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.specimen-notice-success .specimen-notice-dismiss {
+  color: #48bb78;
+}
+
+.specimen-notice-warning .specimen-notice-dismiss {
+  color: #f6ad55;
+}
+
+.specimen-notice-success .specimen-notice-dismiss:hover {
+  background-color: #c6f6d5;
+}
+
+.specimen-notice-warning .specimen-notice-dismiss:hover {
+  background-color: #feebc8;
+}
+
+.specimen-notice-dismiss svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Queue filters */
+.specimen-queue-filters {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.specimen-filters-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 1.5fr auto;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.specimen-filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.specimen-filter-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.specimen-search-input,
+.specimen-filter-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: #2d3748;
+  background-color: #ffffff;
+  transition: border-color 0.2s;
+}
+
+.specimen-search-input:focus,
+.specimen-filter-select:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.specimen-sort-direction-button {
+  padding: 0.5rem 1rem;
+  background-color: #f7fafc;
+  color: #4a5568;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  align-self: end;
+}
+
+.specimen-sort-direction-button:hover {
+  background-color: #e2e8f0;
+  border-color: #a0aec0;
+}
+
+.specimen-filters-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.specimen-results-count {
+  font-size: 0.875rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+.specimen-clear-filters-button {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #4299e1;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.specimen-clear-filters-button:hover {
+  background-color: #ebf8ff;
+  color: #2c5282;
+}
+
+/* Table */
+.specimen-table-container {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.specimen-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.specimen-table thead {
+  background-color: #f7fafc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.specimen-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4a5568;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.specimen-table tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s;
+}
+
+.specimen-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.specimen-table tbody tr:hover {
+  background-color: #f7fafc;
+}
+
+.specimen-table td {
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #2d3748;
+  vertical-align: middle;
+}
+
+.specimen-cell-id {
+  font-weight: 600;
+}
+
+.specimen-request-id {
+  color: #2d3748;
+}
+
+.specimen-cell-patient {
+  min-width: 150px;
+}
+
+.specimen-patient-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.specimen-patient-name {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.specimen-patient-id {
+  font-size: 0.75rem;
+  color: #718096;
+}
+
+.specimen-cell-type {
+  min-width: 120px;
+}
+
+.specimen-cell-tests {
+  min-width: 150px;
+}
+
+.specimen-tests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.specimen-test-tag {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  background-color: #e2e8f0;
+  color: #4a5568;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.specimen-test-more {
+  font-size: 0.75rem;
+  color: #718096;
+  font-style: italic;
+}
+
+.specimen-cell-priority,
+.specimen-cell-status {
+  white-space: nowrap;
+}
+
+.specimen-priority-badge,
+.specimen-status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.specimen-priority-STAT {
+  background-color: #fed7d7;
+  color: #742a2a;
+}
+
+.specimen-priority-urgent {
+  background-color: #feebc8;
+  color: #7c2d12;
+}
+
+.specimen-priority-routine {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+
+.specimen-status-awaiting-collection {
+  background-color: #bee3f8;
+  color: #2c5282;
+}
+
+.specimen-status-collection-started {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.specimen-status-collected-pending-verification {
+  background-color: #feebc8;
+  color: #7c2d12;
+}
+
+.specimen-status-verified {
+  background-color: #9ae6b4;
+  color: #22543d;
+}
+
+.specimen-status-rejected {
+  background-color: #feb2b2;
+  color: #742a2a;
+}
+
+.specimen-status-cancelled {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+
+.specimen-cell-date {
+  min-width: 120px;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.specimen-cell-actions {
+  text-align: right;
+}
+
+.specimen-action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.specimen-action-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  white-space: nowrap;
+}
+
+.specimen-action-collect {
+  background-color: #4299e1;
+  color: #ffffff;
+}
+
+.specimen-action-collect:hover {
+  background-color: #3182ce;
+}
+
+.specimen-action-verify {
+  background-color: #48bb78;
+  color: #ffffff;
+}
+
+.specimen-action-verify:hover {
+  background-color: #38a169;
+}
+
+.specimen-action-reject {
+  background-color: #fc8181;
+  color: #ffffff;
+}
+
+.specimen-action-reject:hover {
+  background-color: #f56565;
+}
+
+/* Collection/verification forms */
+.specimen-collection-form,
+.specimen-verification-panel {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.specimen-form-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f7fafc;
+}
+
+.specimen-form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 0.5rem 0;
+}
+
+.specimen-form-subtitle {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0;
+}
+
+.specimen-form-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.specimen-form-section:last-child {
+  border-bottom: none;
+}
+
+.specimen-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 1rem 0;
+}
+
+.specimen-patient-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.specimen-detail-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1rem;
+}
+
+.specimen-detail-row.specimen-detail-full {
+  grid-template-columns: 150px 2fr;
+}
+
+.specimen-detail-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #718096;
+}
+
+.specimen-detail-value {
+  font-size: 0.875rem;
+  color: #2d3748;
+}
+
+.specimen-identifier-highlight {
+  font-weight: 600;
+  color: #2c5282;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+/* Form fields */
+.specimen-form-field {
+  margin-bottom: 1.5rem;
+}
+
+.specimen-form-field:last-child {
+  margin-bottom: 0;
+}
+
+.specimen-checkbox-label {
+  display: flex;
+  align-items: start;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.specimen-checkbox {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.125rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.specimen-checkbox-text {
+  font-size: 0.875rem;
+  color: #2d3748;
+  line-height: 1.5;
+}
+
+.specimen-field-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.specimen-required-mark {
+  color: #e53e3e;
+  margin-left: 0.25rem;
+}
+
+.specimen-text-input,
+.specimen-select-input,
+.specimen-textarea-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: #2d3748;
+  transition: border-color 0.2s;
+}
+
+.specimen-text-input:focus,
+.specimen-select-input:focus,
+.specimen-textarea-input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.specimen-textarea-input {
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Verification notice */
+.specimen-verification-notice {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: #ebf8ff;
+  border: 1px solid #90cdf4;
+  border-radius: 0.375rem;
+}
+
+.specimen-verification-notice .specimen-notice-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #2c5282;
+}
+
+.specimen-verification-notice span {
+  font-size: 0.875rem;
+  color: #2c5282;
+}
+
+/* Verification checklist */
+.specimen-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.specimen-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: #f0fff4;
+  border: 1px solid #9ae6b4;
+  border-radius: 0.375rem;
+}
+
+.specimen-checklist-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #38a169;
+}
+
+.specimen-checklist-item span {
+  font-size: 0.875rem;
+  color: #22543d;
+  font-weight: 500;
+}
+
+/* Validation errors */
+.specimen-validation-errors {
+  padding: 1rem;
+  background-color: #fff5f5;
+  border: 1px solid #fc8181;
+  border-radius: 0.375rem;
+  margin-top: 1rem;
+}
+
+.specimen-error-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #742a2a;
+  margin: 0 0 0.5rem 0;
+}
+
+.specimen-error-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.specimen-error-list li {
+  font-size: 0.875rem;
+  color: #742a2a;
+  margin-bottom: 0.25rem;
+}
+
+.specimen-error-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Form actions */
+.specimen-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  background-color: #f7fafc;
+}
+
+.specimen-button-primary,
+.specimen-button-secondary,
+.specimen-button-danger {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.specimen-button-primary {
+  background-color: #4299e1;
+  color: #ffffff;
+}
+
+.specimen-button-primary:hover:not(:disabled) {
+  background-color: #3182ce;
+}
+
+.specimen-button-primary:disabled {
+  background-color: #cbd5e0;
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.specimen-button-secondary {
+  background-color: #ffffff;
+  color: #4a5568;
+  border: 1px solid #cbd5e0;
+}
+
+.specimen-button-secondary:hover {
+  background-color: #f7fafc;
+  border-color: #a0aec0;
+}
+
+.specimen-button-danger {
+  background-color: #fc8181;
+  color: #ffffff;
+}
+
+.specimen-button-danger:hover {
+  background-color: #f56565;
+}
+
+/* Rejection dialog */
+.specimen-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 1000;
+}
+
+.specimen-dialog {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.specimen-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.specimen-dialog-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0;
+}
+
+.specimen-dialog-close {
+  padding: 0.5rem;
+  background-color: transparent;
+  color: #a0aec0;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.specimen-dialog-close:hover {
+  background-color: #f7fafc;
+  color: #4a5568;
+}
+
+.specimen-dialog-close svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.specimen-dialog-content {
+  padding: 1.5rem;
+}
+
+.specimen-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  background-color: #f7fafc;
+}
+
+.specimen-rejection-dialog .specimen-rejection-warning {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: #fffaf0;
+  border: 1px solid #f6ad55;
+  border-radius: 0.375rem;
+  margin-bottom: 1.5rem;
+}
+
+.specimen-warning-icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #dd6b20;
+}
+
+.specimen-rejection-warning p {
+  font-size: 0.875rem;
+  color: #7c2d12;
+  margin: 0;
+}
+
+.specimen-rejection-info {
+  padding: 1rem;
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Empty state */
+.specimen-empty-state {
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+}
+
+.specimen-empty-icon {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto 1.5rem;
+  color: #cbd5e0;
+}
+
+.specimen-empty-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 0 0 0.75rem 0;
+}
+
+.specimen-empty-description {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0 0 1.5rem 0;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .specimen-filters-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .laboratory-orders-main {
+    grid-template-columns: 1fr;
+  }
+  
+  .laboratory-filters-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .specimen-table {
+    font-size: 0.8125rem;
+  }
+  
+  .specimen-table td,
+  .specimen-table th {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .laboratory-orders-container,
+  .specimen-collection-container {
+    padding: 1rem;
+  }
+  
+  .laboratory-orders-header,
+  .specimen-collection-header {
+    margin: -1rem -1rem 1rem -1rem;
+    padding: 1rem;
+  }
+  
+  .specimen-action-buttons {
+    flex-direction: column;
+  }
+  
+  .specimen-action-button {
+    width: 100%;
+  }
+}
