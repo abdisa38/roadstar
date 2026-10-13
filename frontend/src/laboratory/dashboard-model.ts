@@ -156,7 +156,7 @@ export const demoDashboardOrders: DashboardOrder[] = [
     specimenType: 'Blood',
     specimenStatus: 'not-collected',
     processingStatus: 'specimen-collection-pending',
-    priority: 'STAT',
+    priority: 'stat',
     nextAction: 'Contact specimen collection'
   },
   {
@@ -190,7 +190,7 @@ export const demoDashboardOrders: DashboardOrder[] = [
     specimenStatus: 'verified',
     specimenIdentifier: 'SPEC-2026-00244',
     processingStatus: 'result-available',
-    priority: 'STAT',
+    priority: 'stat',
     nextAction: 'Review result'
   },
   {
@@ -241,7 +241,7 @@ export const demoDashboardOrders: DashboardOrder[] = [
     specimenStatus: 'verified',
     specimenIdentifier: 'SPEC-2026-00241',
     processingStatus: 'in-progress',
-    priority: 'STAT',
+    priority: 'stat',
     nextAction: 'Continue processing'
   },
   {

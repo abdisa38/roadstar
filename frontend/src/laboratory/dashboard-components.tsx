@@ -9,7 +9,7 @@ import {
   formatAttentionPriority,
   getNextActionLabel
 } from './dashboard-model';
-import { formatRequestStatus, formatRequestPriority } from './model';
+import { getRequestStatusLabel, getPriorityLabel } from './model';
 import { formatSpecimenStatus } from './specimen-model';
 
 // Dashboard Header Component
@@ -428,12 +428,12 @@ export function DashboardOrdersTable({
               </td>
               <td className="dashboard-cell-processing">
                 <span className={`dashboard-processing-badge dashboard-processing-${order.processingStatus}`}>
-                  {formatRequestStatus(order.processingStatus)}
+                  {getRequestStatusLabel(order.processingStatus)}
                 </span>
               </td>
               <td className="dashboard-cell-priority">
                 <span className={`dashboard-priority-badge dashboard-priority-${order.priority}`}>
-                  {formatRequestPriority(order.priority)}
+                  {getPriorityLabel(order.priority)}
                 </span>
               </td>
               <td className="dashboard-cell-actions">
