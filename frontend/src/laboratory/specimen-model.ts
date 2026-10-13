@@ -481,6 +481,19 @@ export function formatDateTime(timestamp: string): string {
   })
 }
 
+export function formatSpecimenStatus(status: SpecimenStatus | 'not-collected'): string {
+  const labels: Record<SpecimenStatus | 'not-collected', string> = {
+    'not-collected': 'Not Collected',
+    'awaiting-collection': 'Awaiting Collection',
+    'collection-started': 'Collection Started',
+    'collected-pending-verification': 'Pending Verification',
+    'verified': 'Verified',
+    'rejected': 'Rejected',
+    'cancelled': 'Cancelled',
+  }
+  return labels[status]
+}
+
 export function formatDate(date: string): string {
   const d = new Date(date)
   return d.toLocaleDateString('en-GB', {

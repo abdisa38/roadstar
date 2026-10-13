@@ -460,7 +460,7 @@ export function sortOrders(
         bVal = b.patientName;
         break;
       case 'priority':
-        const priorityOrder = { 'STAT': 0, 'urgent': 1, 'routine': 2 };
+        const priorityOrder = { 'stat': 0, 'urgent': 1, 'routine': 2 };
         aVal = priorityOrder[a.priority];
         bVal = priorityOrder[b.priority];
         break;
