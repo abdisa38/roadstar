@@ -513,3 +513,46 @@ export function generateSpecimenId(): string {
   const random = Math.floor(Math.random() * 100000).toString().padStart(5, '0')
   return `SPEC-${year}-${random}`
 }
+
+
+// Alias exports for compatibility with SpecimenCollectionPage
+export const demoCollectionRequests = sampleCollectionRequests
+export const demoCollectionUser = sampleCollectionContext.currentUser
+
+// Permission check helpers
+export function canCollectSpecimen(request: CollectionRequest, context: SpecimenCollectionContext): boolean {
+  return canStartCollection(request, context)
+}
+
+export function canVerifySpecimen(request: CollectionRequest, context: SpecimenCollectionContext): boolean {
+  return canVerify(request, context)
+}
+
+export function canRejectSpecimen(request: CollectionRequest, context: SpecimenCollectionContext): boolean {
+  return canReject(request, context)
+}
+
+// Status transition helper
+export function getNextSpecimenStatus(
+  currentStatus: SpecimenStatus,
+  action: 'collect' | 'verify' | 'reject'
+): SpecimenStatus {
+  if (action === 'collect') {
+    if (currentStatus === 'awaiting-collection' || currentStatus === 'collection-started') {
+      return 'collected-pending-verification'
+    }
+  } else if (action === 'verify') {
+    if (currentStatus === 'collected-pending-verification') {
+      return 'verified'
+    }
+  } else if (action === 'reject') {
+    return 'rejected'
+  }
+  return currentStatus
+}
+
+
+// Alias for collection location formatter
+export function formatCollectionLocation(location: CollectionLocation): string {
+  return getCollectionLocationLabel(location)
+}
