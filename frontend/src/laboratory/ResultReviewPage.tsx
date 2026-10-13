@@ -49,7 +49,6 @@ export default function ResultReviewPage({ onNavigateBack }: ResultReviewPagePro
   const [reviewNotes, setReviewNotes] = useState('')
   const [isSavingNotes, setIsSavingNotes] = useState(false)
 
-  
   const filteredQueue = useMemo(() => {
     return queueItems.filter(item => {
       if (queueSearchTerm) {
@@ -96,7 +95,6 @@ export default function ResultReviewPage({ onNavigateBack }: ResultReviewPagePro
     setShowAuditHistory(false)
   }
 
-  
   const handleSaveNotes = () => {
     setIsSavingNotes(true)
     setTimeout(() => {
@@ -156,68 +154,6 @@ export default function ResultReviewPage({ onNavigateBack }: ResultReviewPagePro
       </div>
     )
   }
-
-  
-  const handleSaveNotes = () => {
-    setIsSavingNotes(true)
-    setTimeout(() => {
-      console.log('Review notes saved:', reviewNotes)
-      setIsSavingNotes(false)
-    }, 1000)
-  }
-  
-  const handleApprove = () => {
-    if (!reviewOrder) return
-    console.log('Approving order:', reviewOrder.orderNumber)
-    setShowApprovalDialog(false)
-    setReviewOrder({
-      ...reviewOrder,
-      reviewStatus: 'approved',
-      reviewedBy: context.currentUser,
-      reviewCompletedAt: new Date().toISOString(),
-    })
-  }
-  
-  const handleRequestCorrection = (request: CorrectionRequest) => {
-    console.log('Requesting correction:', request)
-    setShowCorrectionDialog(false)
-    if (reviewOrder) {
-      setReviewOrder({
-        ...reviewOrder,
-        reviewStatus: 'returned-for-correction',
-      })
-    }
-  }
-  
-  if (!selectedOrderId || !reviewOrder) {
-    return (
-      <div className="review-page">
-        <ReviewPageHeader
-          currentUser={context.currentUser}
-          currentRole={context.currentRole}
-          onRefresh={() => console.log('Refresh queue')}
-        />
-        <div className="review-container">
-          <ReviewQueuePanel
-            metrics={queueMetrics}
-            onFilterCritical={() => setQueueCriticalFilter(!queueCriticalFilter)}
-            criticalFilterActive={queueCriticalFilter}
-          />
-          <ReviewQueueTable
-            items={filteredQueue}
-            searchTerm={queueSearchTerm}
-            onSearchChange={setQueueSearchTerm}
-            statusFilter={queueStatusFilter}
-            onStatusFilterChange={setQueueStatusFilter}
-            priorityFilter={queuePriorityFilter}
-            onPriorityFilterChange={setQueuePriorityFilter}
-            onOpenOrder={handleOpenOrder}
-          />
-        </div>
-      </div>
-    )
-  }
-
   
   if (isLoadingOrder) {
     return <ReviewLoadingState message="Loading order for review..." />

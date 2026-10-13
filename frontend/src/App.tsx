@@ -26,9 +26,11 @@ const LaboratoryDashboard = lazy(() => import("./laboratory/LaboratoryDashboardP
 const LaboratoryOrders = lazy(() => import("./laboratory/LaboratoryOrdersPage"))
 const SpecimenCollection = lazy(() => import("./laboratory/SpecimenCollectionPage"))
 const ResultEntry = lazy(() => import("./laboratory/ResultEntryPage"))
+const ResultReview = lazy(() => import("./laboratory/ResultReviewPage"))
 
-type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis" | "staff-prescription" | "staff-laboratory" | "staff-laboratory-orders" | "staff-specimen-collection" | "staff-result-entry"
+type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis" | "staff-prescription" | "staff-laboratory" | "staff-laboratory-orders" | "staff-specimen-collection" | "staff-result-entry" | "staff-result-review"
 function pageFromPath(path: string): PublicPage {
+  if (path === "/staff/laboratory/result-review" || path.startsWith("/staff/laboratory/result-review/")) return "staff-result-review"
   if (path === "/staff/laboratory/result-entry" || path.startsWith("/staff/laboratory/result-entry/")) return "staff-result-entry"
   if (path === "/staff/laboratory/specimen-collection" || path.startsWith("/staff/laboratory/specimen-collection/")) return "staff-specimen-collection"
   if (path === "/staff/laboratory/orders" || path.startsWith("/staff/laboratory/orders/")) return "staff-laboratory-orders"
@@ -249,6 +251,8 @@ export default function App() {
   }
   if (page === "staff-permissions")
     return <Suspense fallback={<div className="notice">Loading design-review workspace…</div>}><StaffPermissions key="permissions" /></Suspense>
+  if (page === "staff-result-review")
+    return <Suspense fallback={<div className="notice">Loading result review…</div>}><ResultReview onNavigateBack={() => { window.history.pushState({}, "", "/staff/laboratory"); setPage("staff-laboratory"); }} /></Suspense>
   if (page === "staff-result-entry")
     return <Suspense fallback={<div className="notice">Loading result entry…</div>}><ResultEntry orderId="ORD-LAB-2026-00124" onNavigateBack={() => { window.history.pushState({}, "", "/staff/laboratory"); setPage("staff-laboratory"); }} /></Suspense>
   if (page === "staff-specimen-collection")
@@ -256,7 +260,7 @@ export default function App() {
   if (page === "staff-laboratory-orders")
     return <Suspense fallback={<div className="notice">Loading laboratory orders…</div>}><LaboratoryOrders state="ready" patientId="ORH-2026-00124" encounterId="ENC-2026-00087" onNavigate={(id, params) => { console.log('Navigate to:', id, params); }} onReady={() => {}} /></Suspense>
   if (page === "staff-laboratory")
-    return <Suspense fallback={<div className="notice">Loading laboratory dashboard…</div>}><LaboratoryDashboard onNavigate={(destination, orderId) => { if (destination === 'orders') { window.history.pushState({}, "", "/staff/laboratory/orders"); setPage("staff-laboratory-orders"); } else if (destination === 'specimen-collection') { window.history.pushState({}, "", "/staff/laboratory/specimen-collection"); setPage("staff-specimen-collection"); } else if (destination === 'result-entry') { window.history.pushState({}, "", "/staff/laboratory/result-entry"); setPage("staff-result-entry"); } else if (destination === 'order-details') { console.log('Navigate to order details:', orderId); } }} /></Suspense>
+    return <Suspense fallback={<div className="notice">Loading laboratory dashboard…</div>}><LaboratoryDashboard onNavigate={(destination, orderId) => { if (destination === 'orders') { window.history.pushState({}, "", "/staff/laboratory/orders"); setPage("staff-laboratory-orders"); } else if (destination === 'specimen-collection') { window.history.pushState({}, "", "/staff/laboratory/specimen-collection"); setPage("staff-specimen-collection"); } else if (destination === 'result-entry') { window.history.pushState({}, "", "/staff/laboratory/result-entry"); setPage("staff-result-entry"); } else if (destination === 'result-review') { window.history.pushState({}, "", "/staff/laboratory/result-review"); setPage("staff-result-review"); } else if (destination === 'order-details') { console.log('Navigate to order details:', orderId); } }} /></Suspense>
   if (page === "staff-prescription")
     return <Suspense fallback={<div className="notice">Loading prescription management…</div>}><PrescriptionManagement state="ready" patientId="ORH-2026-00124" encounterId="ENC-2026-00087" onNavigate={(id, params) => console.log('Navigate to:', id, params)} onReady={() => {}} /></Suspense>
   if (page === "staff-diagnosis")
