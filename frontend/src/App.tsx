@@ -22,10 +22,11 @@ const ClinicalWorkspace = lazy(() => import("./clinical/ClinicalWorkspacePage"))
 const MedicalHistory = lazy(() => import("./medical-history/MedicalHistoryPage"))
 const DiagnosisManagement = lazy(() => import("./diagnosis/DiagnosisManagementPage"))
 const PrescriptionManagement = lazy(() => import("./prescription/PrescriptionManagementPage"))
+const LaboratoryDashboard = lazy(() => import("./laboratory/LaboratoryDashboardPage"))
 const LaboratoryOrders = lazy(() => import("./laboratory/LaboratoryOrdersPage"))
 const SpecimenCollection = lazy(() => import("./laboratory/SpecimenCollectionPage"))
 
-type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis" | "staff-prescription" | "staff-laboratory" | "staff-specimen-collection"
+type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis" | "staff-prescription" | "staff-laboratory" | "staff-laboratory-orders" | "staff-specimen-collection"
 function pageFromPath(path: string): PublicPage {
   if (path === "/staff/laboratory/specimen-collection" || path.startsWith("/staff/laboratory/specimen-collection/")) return "staff-specimen-collection"
   if (path === "/staff/laboratory" || path.startsWith("/staff/laboratory/")) return "staff-laboratory"
