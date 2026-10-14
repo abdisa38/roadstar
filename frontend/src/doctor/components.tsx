@@ -14,7 +14,7 @@ import {
 } from './model'
 import Icon from '../Icon'
 
-// Dashboard Summary Cards
+// Dashboard Summary Cardsjui
 type DashboardSummaryCardsProps = {
   summary: DashboardSummary
   onCardClick: (status: EncounterStatus) => void
