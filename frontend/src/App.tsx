@@ -28,9 +28,11 @@ const SpecimenCollection = lazy(() => import("./laboratory/SpecimenCollectionPag
 const ResultEntry = lazy(() => import("./laboratory/ResultEntryPage"))
 const ResultReview = lazy(() => import("./laboratory/ResultReviewPage"))
 const HistoryPage = lazy(() => import("./laboratory/HistoryPage"))
+const PharmacyDashboard = lazy(() => import("./pharmacy/PharmacyDashboardPage"))
 
-type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis" | "staff-prescription" | "staff-laboratory" | "staff-laboratory-orders" | "staff-specimen-collection" | "staff-result-entry" | "staff-result-review" | "staff-history"
+type PublicPage = "home" | "about" | "directory" | "doctors" | "appointments" | "contact" | "patient-services" | "staff-auth" | "staff-permissions" | "staff-reception" | "staff-appointments" | "staff-patient-profile" | "staff-queue" | "staff-nurse" | "staff-triage" | "staff-doctor" | "staff-clinical" | "staff-medical-history" | "staff-diagnosis" | "staff-prescription" | "staff-laboratory" | "staff-laboratory-orders" | "staff-specimen-collection" | "staff-result-entry" | "staff-result-review" | "staff-history" | "staff-pharmacy"
 function pageFromPath(path: string): PublicPage {
+  if (path === "/staff/pharmacy" || path.startsWith("/staff/pharmacy/")) return "staff-pharmacy"
   if (path === "/staff/laboratory/history" || path.startsWith("/staff/laboratory/history/")) return "staff-history"
   if (path === "/staff/laboratory/result-review" || path.startsWith("/staff/laboratory/result-review/")) return "staff-result-review"
   if (path === "/staff/laboratory/result-entry" || path.startsWith("/staff/laboratory/result-entry/")) return "staff-result-entry"
@@ -253,6 +255,8 @@ export default function App() {
   }
   if (page === "staff-permissions")
     return <Suspense fallback={<div className="notice">Loading design-review workspace…</div>}><StaffPermissions key="permissions" /></Suspense>
+  if (page === "staff-pharmacy")
+    return <Suspense fallback={<div className="notice">Loading pharmacy dashboard…</div>}><PharmacyDashboard onNavigate={(destination, params) => { console.log('Pharmacy navigate to:', destination, params); }} /></Suspense>
   if (page === "staff-history")
     return <Suspense fallback={<div className="notice">Loading laboratory history…</div>}><HistoryPage onNavigateBack={() => { window.history.pushState({}, "", "/staff/laboratory"); setPage("staff-laboratory"); }} /></Suspense>
   if (page === "staff-result-review")
